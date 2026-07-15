@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingeniería Biológica | Universidad de San Buenaventura Cali</title>
+<meta name="description" content="Combina biología, análisis de datos, inteligencia artificial y sostenibilidad. Programa híbrido y flexible. Único en Cali con énfasis en bioinformática y agricultura regenerativa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta institucional USB: naranja #EF7D00 + negro #1D1D1B (Manual de Marca 2024) */
+    --verde-900:#1d1d1b; --verde-800:#332d27; --verde-700:#c25e00; --verde-600:#ef7d00; --verde-500:#ff9124;
+    --lima:#ffb347; --teal:#d96a00; --crema:#faf6f1; --tinta:#1d1d1b; --gris:#6b645d;
+    --sombra:0 10px 40px rgba(29,29,27,.14);
+    --radio:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--tinta);background:var(--crema);line-height:1.6}
+  h1,h2,h3,.display{font-family:'Sora',sans-serif;line-height:1.15}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .eyebrow{display:inline-block;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--verde-600)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,246,241,.9);backdrop-filter:blur(10px);border-bottom:1px solid #ece7e1}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:'Sora';font-weight:800;font-size:1.05rem;color:var(--verde-900);display:flex;align-items:center;gap:10px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--verde-500),var(--teal))}
+  .navlinks{display:flex;gap:26px;font-size:.92rem;font-weight:500}
+  .navlinks a{color:var(--gris)}
+  .navlinks a:hover{color:var(--verde-700)}
+  .nav-cta{background:var(--verde-600);color:#fff;padding:9px 18px;border-radius:999px;font-weight:600;font-size:.88rem}
+  @media(max-width:860px){.navlinks{display:none}}
+
+  /* HERO */
+  .hero{position:relative;color:#f5e9dc;overflow:hidden;
+    background:radial-gradient(1200px 500px at 85% -10%,rgba(239,125,0,.28),transparent),
+               linear-gradient(160deg,var(--verde-900),var(--verde-800) 55%,#4a2c0c)}
+  .hero::after{content:"";position:absolute;inset:0;background:
+    radial-gradient(600px 300px at 15% 110%,rgba(239,125,0,.20),transparent)}
+  .hero .wrap{position:relative;z-index:2;padding:74px 22px 90px}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.5rem);font-weight:800;color:#fff;margin:16px 0 8px;max-width:15ch}
+  .hero h1 span{background:linear-gradient(90deg,var(--lima),var(--verde-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:clamp(1rem,2.2vw,1.22rem);max-width:52ch;color:#ecdccb}
+  .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 30px}
+  .hero-badges span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:500}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;padding:14px 26px;border-radius:999px;cursor:pointer;border:none;font-size:1rem;transition:transform .15s,box-shadow .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-wa{background:#25d366;color:#04331c;box-shadow:0 8px 26px rgba(37,211,102,.4)}
+  .btn-ghost{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.3)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px}
+
+  /* STAT BAR */
+  .stats{background:#fff;box-shadow:var(--sombra);border-radius:var(--radio);margin-top:-46px;position:relative;z-index:5;
+    display:grid;grid-template-columns:repeat(5,1fr);overflow:hidden}
+  .stats div{padding:22px 16px;text-align:center;border-right:1px solid #efe8e0}
+  .stats div:last-child{border-right:none}
+  .stats b{display:block;font-family:'Sora';font-size:1.5rem;color:var(--verde-800);font-weight:700}
+  .stats small{color:var(--gris);font-size:.78rem}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.stats div:nth-child(2){border-right:none}}
+
+  /* SECTIONS */
+  section.block{padding:66px 0}
+  .sec-head{max-width:60ch;margin-bottom:34px}
+  .sec-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:700;color:var(--verde-900);margin:8px 0}
+  .sec-head p{color:var(--gris);font-size:1.05rem}
+
+  .hook{background:linear-gradient(135deg,#fff2e2,#fde9d8);border-radius:24px;padding:44px;position:relative;overflow:hidden}
+  .hook h2{font-size:clamp(1.5rem,3.2vw,2.1rem);color:var(--verde-900);max-width:20ch}
+  .hook p{color:#4a423b;font-size:1.06rem;max-width:65ch;margin-top:14px}
+  .hook .pill{display:inline-block;background:#fff;color:var(--teal);font-weight:600;font-size:.8rem;padding:6px 14px;border-radius:999px;box-shadow:var(--sombra)}
+
+  .grid{display:grid;gap:20px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.g3,.g2{grid-template-columns:1fr}}
+
+  .card{background:#fff;border:1px solid #efe6dc;border-radius:var(--radio);padding:26px;transition:transform .18s,box-shadow .18s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--sombra)}
+  .card .ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+    background:linear-gradient(135deg,var(--verde-500),var(--teal));margin-bottom:14px}
+  .card h3{font-size:1.12rem;color:var(--verde-900);margin-bottom:6px}
+  .card p{color:var(--gris);font-size:.95rem}
+
+  .why{background:var(--verde-900);color:#f0e6da;border-radius:26px;padding:48px}
+  .why h2{color:#fff}
+  .why-list{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+  @media(max-width:720px){.why-list{grid-template-columns:1fr}}
+  .why-item{display:flex;gap:12px;align-items:flex-start}
+  .why-item .chk{flex:none;width:24px;height:24px;border-radius:7px;background:var(--verde-500);color:#3a1e00;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem}
+  .why-item b{color:#fff}
+  .why-item span{color:#d9cabb;font-size:.95rem}
+
+  .highlight-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 18px}
+  .chip b{display:block;font-family:'Sora';font-size:1.3rem;color:var(--lima)}
+  .chip small{color:#d9cabb;font-size:.8rem}
+
+  /* énfasis */
+  .track{background:#fff;border-radius:var(--radio);border:1px solid #efe6dc;padding:30px;box-shadow:var(--sombra)}
+  .track .tag{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--teal)}
+  .track h3{font-size:1.35rem;color:var(--verde-900);margin:6px 0 12px}
+  .track ul{list-style:none}
+  .track li{padding:7px 0 7px 26px;position:relative;color:#4a423b}
+  .track li::before{content:"→";position:absolute;left:0;color:var(--verde-600);font-weight:700}
+
+  /* modalidad */
+  .modal-box{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;
+    background:linear-gradient(135deg,#ff9124,#ef7d00);color:#fff;border-radius:26px;padding:44px}
+  @media(max-width:800px){.modal-box{grid-template-columns:1fr}}
+  .modal-box h2{color:#fff}
+  .modal-box p{color:#fff2e2;margin-top:10px}
+  .modal-facts{background:rgba(255,255,255,.12);border-radius:16px;padding:22px}
+  .modal-facts div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:.95rem}
+  .modal-facts div:last-child{border:none}
+
+  /* plan de estudios */
+  .acc{background:#fff;border:1px solid #efe6dc;border-radius:14px;margin-bottom:10px;overflow:hidden}
+  .acc summary{cursor:pointer;list-style:none;padding:16px 22px;font-family:'Sora';font-weight:600;color:var(--verde-900);display:flex;justify-content:space-between;align-items:center}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary::after{content:"+";font-size:1.4rem;color:var(--verde-600)}
+  .acc[open] summary::after{content:"–"}
+  .acc .body{padding:4px 22px 20px}
+  .acc .body ul{list-style:none;columns:2;gap:24px}
+  @media(max-width:600px){.acc .body ul{columns:1}}
+  .acc .body li{padding:5px 0;color:#4a423b;font-size:.92rem;border-bottom:1px dashed #efe6dc}
+  .acc .body li span{color:var(--verde-600);font-weight:600;font-size:.82rem}
+
+  /* CTA / form */
+  .cta-final{background:var(--verde-900);border-radius:28px;color:#fff;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:820px){.cta-final{grid-template-columns:1fr;padding:34px}}
+  .cta-final h2{color:#fff;font-size:1.9rem}
+  .cta-final p{color:#d9cabb;margin-top:10px}
+  .cta-final .btn-wa{margin-top:22px}
+  form{display:flex;flex-direction:column;gap:12px;background:#fff;border-radius:18px;padding:26px}
+  form label{font-size:.82rem;font-weight:600;color:var(--verde-900);margin-bottom:-6px}
+  form input,form select{padding:12px 14px;border:1px solid #d8e6db;border-radius:10px;font-size:.95rem;font-family:inherit;color:var(--tinta)}
+  form input:focus,form select:focus{outline:none;border-color:var(--verde-500)}
+  form button{background:var(--verde-600);color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;margin-top:4px}
+  form small{color:var(--gris);font-size:.72rem;text-align:center}
+
+  /* tarjeta de registro (enlace al formulario oficial) */
+  .reg-card{background:#fff;border-radius:18px;padding:30px;display:flex;flex-direction:column;gap:12px}
+  .reg-badge{align-self:flex-start;background:#fff2e2;color:var(--verde-700,#c25e00);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .reg-card h3{font-size:1.35rem;color:var(--verde-900);margin-top:4px}
+  .reg-card p{color:var(--gris);font-size:.96rem}
+  .reg-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin:4px 0}
+  .reg-list li{position:relative;padding-left:28px;color:#4a423b;font-size:.94rem}
+  .reg-list li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--verde-500);color:#3a1e00;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800}
+  .reg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--verde-600);color:#fff;font-weight:700;font-size:1rem;padding:15px;border-radius:12px;margin-top:6px;transition:transform .15s,box-shadow .15s}
+  .reg-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(239,125,0,.35)}
+  .reg-card small{color:var(--gris);font-size:.74rem;text-align:center}
+
+  /* footer */
+  footer{background:#1d1d1b;color:#b3a99f;padding:44px 0;font-size:.9rem}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+  footer b{color:#fff;font-family:'Sora'}
+  footer a{color:#d9cabb}
+  .legal{border-top:1px solid rgba(255,255,255,.1);margin-top:26px;padding-top:18px;font-size:.78rem;color:#8a8078}
+
+  /* WhatsApp flotante */
+  .wa-float{position:fixed;right:20px;bottom:20px;z-index:80;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(37,211,102,.5);font-size:1.7rem;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Ingeniería Biológica · USB Cali</div>
+    <div class="navlinks">
+      <a href="#futuro">El futuro</a>
+      <a href="#areas">Áreas</a>
+      <a href="#porque">Por qué USB</a>
+      <a href="#plan">Plan de estudios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Agenda tu visita</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--lima)">Pregrado · SNIES 118444 · Modalidad híbrida</span>
+    <h1>Biología, datos e <span>inteligencia artificial</span> para transformar el futuro</h1>
+    <p class="lead">El único programa en Cali que integra bioinformática y agricultura regenerativa. Formación híbrida y flexible, pensada también para quienes trabajan o viven fuera de la ciudad.</p>
+    <div class="hero-badges">
+      <span>🧬 144 créditos</span>
+      <span>📅 8 semestres</span>
+      <span>💻 Híbrida y flexible</span>
+      <span>🌱 Enfoque en sostenibilidad</span>
+      <span>📍 Cali, Valle del Cauca</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-wa" href="https://wa.me/573102334852?text=Hola%2C%20vi%20la%20informaci%C3%B3n%20de%20Ingenier%C3%ADa%20Biol%C3%B3gica%20y%20quiero%20agendar%20una%20visita%20al%20campus." target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C9.6 8.9 9 7.5 8.8 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Escríbeme por WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="https://usbcali.edu.co/wp-content/uploads/2026/02/Plan-Estudios-Biologica2026.pdf" target="_blank">Descargar plan de estudios</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div><b>118444</b><small>Código SNIES</small></div>
+    <div><b>7 años</b><small>Registro calificado</small></div>
+    <div><b>144</b><small>Créditos</small></div>
+    <div><b>8</b><small>Semestres</small></div>
+    <div><b>A1</b><small>Grupo de investigación Minciencias</small></div>
+  </div>
+</div>
+
+<!-- ============ HOOK / FUTURO ============ -->
+<section class="block" id="futuro">
+  <div class="wrap">
+    <div class="hook">
+      <span class="pill">Future of Jobs Report 2025 · Foro Económico Mundial</span>
+      <h2 style="margin-top:16px">¿Te imaginas combinar tu experiencia con biología, datos, IA y sostenibilidad?</h2>
+      <p>La inteligencia artificial, el <b>big data</b>, el pensamiento analítico y la gestión ambiental están entre las habilidades que <b>más crecerán hacia 2030</b>. Ingeniería Biológica integra estos campos para que desarrolles soluciones reales en los sectores que están definiendo la próxima década.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÁREAS ============ -->
+<section class="block" id="areas" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Lo que vas a resolver</span>
+      <h2>Áreas donde desarrollarás soluciones</h2>
+      <p>Un programa interdisciplinario que une la ingeniería con los sistemas vivos.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><div class="ic">🧬</div><h3>Bioinformática y datos biológicos</h3><p>Análisis de secuencias, genómica y metabolómica; modelamiento computacional de sistemas biológicos.</p></div>
+      <div class="card"><div class="ic">🤖</div><h3>IA aplicada a sistemas vivos</h3><p>Inteligencia artificial para bioprocesos, agricultura de precisión y sistemas predictivos.</p></div>
+      <div class="card"><div class="ic">🌱</div><h3>Agricultura regenerativa y salud del suelo</h3><p>Prácticas agrícolas sostenibles, biodiversidad y optimización de sistemas productivos.</p></div>
+      <div class="card"><div class="ic">⚗️</div><h3>Biotecnología y bioproductos</h3><p>Desarrollo de bioinsumos, biomateriales y soluciones de base biológica.</p></div>
+      <div class="card"><div class="ic">📊</div><h3>Optimización de procesos</h3><p>Mejora de procesos biológicos y ambientales con criterios de eficiencia y sostenibilidad.</p></div>
+      <div class="card"><div class="ic">🌍</div><h3>Ambiente y sostenibilidad</h3><p>Biorremediación, restauración ecológica y soluciones basadas en la naturaleza.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUÉ USB ============ -->
+<section class="block" id="porque" style="padding-top:10px">
+  <div class="wrap">
+    <div class="why">
+      <span class="eyebrow" style="color:var(--lima)">Diferenciales</span>
+      <h2>¿Por qué estudiarla en la USB Cali?</h2>
+      <div class="why-list">
+        <div class="why-item"><span class="chk">✓</span><p><b>Único en la región.</b> <span>La única propuesta en Cali que integra bioinformática y agricultura regenerativa como ejes distintivos.</span></p></div>
+        <div class="why-item"><span class="chk">✓</span><p><b>Único en el país en 8 semestres</b> <span>y ofertado por una universidad privada, con formación flexible e interdisciplinaria.</span></p></div>
+        <div class="why-item"><span class="chk">✓</span><p><b>Respaldo de la Facultad de Ingeniería.</b> <span>Con programas acreditados en alta calidad y amplia trayectoria en formación de ingenieros.</span></p></div>
+        <div class="why-item"><span class="chk">✓</span><p><b>Investigación de primer nivel.</b> <span>Grupo de Biotecnología categoría A1 de Minciencias, con 7 patentes en control biológico y biosensores.</span></p></div>
+        <div class="why-item"><span class="chk">✓</span><p><b>Pertinencia con el Valle.</b> <span>Agroindustria, biotecnología, salud, medio ambiente y bioemprendimientos.</span></p></div>
+        <div class="why-item"><span class="chk">✓</span><p><b>Agenda global post-COP16.</b> <span>Alineado con los ODS y la bioeconomía, en un territorio reconocido por su riqueza biológica.</span></p></div>
+      </div>
+      <div class="highlight-row">
+        <div class="chip"><b>A1</b><small>Categoría Minciencias</small></div>
+        <div class="chip"><b>7</b><small>Patentes del grupo</small></div>
+        <div class="chip"><b>Única</b><small>En Cali con este enfoque</small></div>
+        <div class="chip"><b>COP16</b><small>Cali, capital de la biodiversidad</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÉNFASIS ============ -->
+<section class="block" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Énfasis del programa</span>
+      <h2>Dos rutas para especializarte</h2>
+    </div>
+    <div class="grid g2">
+      <div class="track">
+        <span class="tag">Énfasis 1</span>
+        <h3>Bioinformática y Big Data biológico</h3>
+        <ul>
+          <li>Análisis de secuencias, genómica y metabolómica</li>
+          <li>Modelamiento computacional de sistemas biológicos</li>
+          <li>IA aplicada a bioprocesos y agricultura de precisión</li>
+        </ul>
+      </div>
+      <div class="track">
+        <span class="tag">Énfasis 2</span>
+        <h3>Agricultura regenerativa</h3>
+        <ul>
+          <li>Diseño de prácticas agrícolas sostenibles</li>
+          <li>Optimización de suelos, biodiversidad y sistemas productivos</li>
+          <li>Desarrollo de bioinsumos agrícolas y bioproductos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAMPO LABORAL ============ -->
+<section class="block" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Tu futuro profesional</span>
+      <h2>¿Dónde podrás desempeñarte?</h2>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>🌾 Agroindustria y agricultura sostenible</h3><p>Bioprocesos para bioinsumos y biomateriales, agricultura de precisión y liderazgo en agricultura regenerativa.</p></div>
+      <div class="card"><h3>♻️ Ambiente y sostenibilidad</h3><p>Biorremediación, gestión ambiental, restauración ecológica y soluciones basadas en la naturaleza.</p></div>
+      <div class="card"><h3>🧮 Bioinformática y análisis de datos</h3><p>Modelamiento de sistemas biológicos, análisis genómico y ambiental, diseño de algoritmos predictivos.</p></div>
+      <div class="card"><h3>🚀 Empresas de base tecnológica</h3><p>Emprendimientos en biotecnología, bioinsumos, biomateriales y agrotech; innovación y transferencia tecnológica.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODALIDAD ============ -->
+<section class="block" style="padding-top:10px">
+  <div class="wrap">
+    <div class="modal-box">
+      <div>
+        <span class="eyebrow" style="color:#f5e9dc">Modalidad híbrida</span>
+        <h2>Estudia sin poner tu vida en pausa</h2>
+        <p>Pensada también para quienes trabajan o viven fuera de Cali. Las asignaturas con componente práctico incluyen <b>jornadas presenciales de dos días por cada corte académico</b>. Y si lo prefieres, también puedes desarrollar toda tu experiencia formativa de manera presencial.</p>
+      </div>
+      <div class="modal-facts">
+        <div><span>Metodología</span><b>Híbrida</b></div>
+        <div><span>Prácticas presenciales</span><b>2 días / corte</b></div>
+        <div><span>Nivel</span><b>Profesional universitario</b></div>
+        <div><span>Duración</span><b>8 semestres</b></div>
+        <div><span>Lugar</span><b>Cali, Valle del Cauca</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLAN DE ESTUDIOS ============ -->
+<section class="block" id="plan" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">144 créditos · 8 semestres</span>
+      <h2>Plan de estudios</h2>
+      <p>Una ruta que crece de los fundamentos hacia la bioinformática, la biotecnología y el diseño en ingeniería biológica.</p>
+    </div>
+
+    <details class="acc"><summary>Semestre 1</summary><div class="body"><ul>
+      <li>Cálculo I <span>4</span></li><li>Química general <span>3</span></li><li>Biología celular <span>3</span></li><li>Introducción a la Ingeniería <span>3</span></li><li>Humanística I <span>2</span></li><li>Comunicación oral y escrita <span>1</span></li><li>Inglés I <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 2</summary><div class="body"><ul>
+      <li>Cálculo II <span>3</span></li><li>Álgebra lineal <span>3</span></li><li>Biología vegetal y animal <span>3</span></li><li>Física <span>4</span></li><li>Fundamentos de programación <span>3</span></li><li>Comunicación oral y escrita II <span>1</span></li><li>Inglés II <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 3</summary><div class="body"><ul>
+      <li>Ecuaciones diferenciales <span>3</span></li><li>Probabilidad y estadística <span>3</span></li><li>Microbiología <span>3</span></li><li>Química de agua y suelo <span>3</span></li><li>Fisiología vegetal <span>3</span></li><li>Humanística II <span>2</span></li><li>Inglés III <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 4</summary><div class="body"><ul>
+      <li>Balance de materia y energía <span>3</span></li><li>Diseño de experimentos <span>2</span></li><li>Ingeniería genética <span>2</span></li><li>Ecología agrícola <span>3</span></li><li>Bioquímica <span>3</span></li><li>Ingeniería de costos <span>2</span></li><li>Ética en ingeniería biológica <span>2</span></li><li>Inglés IV <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 5</summary><div class="body"><ul>
+      <li>Bioestadística <span>2</span></li><li>Ingeniería de procesos biológicos I <span>3</span></li><li>Fenómenos de transporte I <span>3</span></li><li>Biología molecular <span>3</span></li><li>Gerencia de proyectos de ingeniería <span>3</span></li><li>Humanística III <span>2</span></li><li>Inglés V <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 6</summary><div class="body"><ul>
+      <li>Agricultura regenerativa <span>3</span></li><li>Biotecnología <span>3</span></li><li>Modelamiento de sistemas biológicos <span>3</span></li><li>Bioinformática <span>3</span></li><li>Diseño en ingeniería biológica I <span>3</span></li><li>Humanística IV <span>2</span></li><li>Inglés VI <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 7</summary><div class="body"><ul>
+      <li>Analítica de datos <span>3</span></li><li>Fenómenos de transporte II <span>3</span></li><li>Ingeniería de procesos biológicos II <span>3</span></li><li>Diseño en ingeniería biológica II <span>1</span></li><li>Electiva de profundización I <span>3</span></li><li>Humanística V <span>2</span></li><li>Inglés VII <span>2</span></li>
+    </ul></div></details>
+    <details class="acc"><summary>Semestre 8</summary><div class="body"><ul>
+      <li>Práctica profesional <span>6</span></li><li>Electiva de profundización II <span>3</span></li><li>Electiva complementaria I <span>2</span></li><li>Electiva complementaria II <span>2</span></li><li>Inglés VIII <span>2</span></li>
+    </ul></div></details>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL / FORM ============ -->
+<section class="block" id="contacto" style="padding-top:10px">
+  <div class="wrap">
+    <div class="cta-final">
+      <div>
+        <span class="eyebrow" style="color:var(--lima)">Da el primer paso</span>
+        <h2>Conoce el campus y nuestros laboratorios</h2>
+        <p>Agenda una visita y descubre de cerca la infraestructura, los laboratorios y el equipo del programa. Escríbeme directamente y coordinamos día y hora.</p>
+        <p style="margin-top:18px;color:#f5e9dc"><b>Luis Fernando Delgado</b><br><span style="color:#d9cabb">Director de Ingeniería Biológica · USB Cali</span></p>
+        <a class="btn btn-wa" href="https://wa.me/573102334852?text=Hola%2C%20quiero%20agendar%20una%20visita%20al%20campus%20de%20Ingenier%C3%ADa%20Biol%C3%B3gica." target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C9.6 8.9 9 7.5 8.8 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          Escríbeme por WhatsApp
+        </a>
+      </div>
+
+      <div class="reg-card">
+        <span class="reg-badge">Formulario oficial USB</span>
+        <h3>Regístrate y recibe información</h3>
+        <p>Diligencia el formulario oficial de la Universidad. Nuestro equipo de admisiones se comunicará contigo para avanzar en tu proceso.</p>
+        <ul class="reg-list">
+          <li>Registro seguro en la plataforma de la USB Cali</li>
+          <li>Un asesor te contacta para resolver tus dudas</li>
+          <li>Acceso a becas, convenios y opciones de financiación</li>
+        </ul>
+        <a class="reg-btn" href="https://usbc.my.site.com/s/landing" target="_blank" rel="noopener">
+          Ir al formulario de registro
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <small>Se abrirá el formulario oficial de la Universidad de San Buenaventura Cali en una nueva pestaña.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <b>Ingeniería Biológica</b><br>
+      Universidad de San Buenaventura Cali<br>
+      Carrera 122 # 6-65, Cali, Colombia
+    </div>
+    <div>
+      <b>Contacto admisiones</b><br>
+      PBX: 602 488 2222<br>
+      <a href="mailto:informacion@usbcali.edu.co">informacion@usbcali.edu.co</a>
+    </div>
+    <div>
+      <b>Enlaces</b><br>
+      <a href="https://usbcali.edu.co/wp-content/uploads/2026/02/Plan-Estudios-Biologica2026.pdf" target="_blank">Plan de estudios (PDF)</a><br>
+      <a href="https://usbcali.edu.co/programa/ingenieria/pregrado/ingenieria-biologica/" target="_blank">Página oficial del programa</a><br>
+      <a href="https://usbc.my.site.com/s/landing" target="_blank">Preinscripción oficial</a>
+    </div>
+  </div>
+  <div class="wrap legal">
+    Institución Universitaria con Acreditación Institucional Multicampus de Alta Calidad · Código SNIES 118444 · Registro calificado Res. No. 020628 (17/10/2025) · VIGILADA MINEDUCACIÓN
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/573102334852?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20de%20Ingenier%C3%ADa%20Biol%C3%B3gica." target="_blank" aria-label="WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C9.6 8.9 9 7.5 8.8 7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+</body>
+</html>
